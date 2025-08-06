@@ -1,7 +1,7 @@
 # Hybrid Naive Bayes
 
 
-A generalized implementation of the Naive Bayes classifier in Python that provides the following functionality:
+A generalized implementation of the Naive Bayes classifier in Python 3 that provides the following functionality:
 
 1. Support for both categorical and ordered features.
 2. Support for both discrete and continuous ordered features.
@@ -9,7 +9,19 @@ A generalized implementation of the Naive Bayes classifier in Python that provid
 
 ## Setup
 
-There's not much to it; just include the `src/nb.py` and `src/distributions.py` files in your project, and use away! There are no dependencies.
+This project uses [uv](https://github.com/astral-sh/uv) for package management. To create a virtual environment and install the project's dependencies run:
+
+```
+uv sync
+```
+
+This will provision a `.venv` directory with the packages listed in `pyproject.toml` (currently only `requests` for the sample script). You can then execute the example with:
+
+```
+uv run src/test.py
+```
+
+If you prefer not to use the virtual environment, the core modules `src/nb.py` and `src/distributions.py` have no external dependencies and can be copied directly into your project.
 
 ## Details
 
