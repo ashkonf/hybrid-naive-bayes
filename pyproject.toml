@@ -1,0 +1,9 @@
+[project]
+name = "hybrid-naive-bayes"
+version = "0.1.0"
+description = "Generalized Naive Bayes classifier supporting categorical and ordered features"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.4",
+]
