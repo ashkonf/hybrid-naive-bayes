@@ -230,3 +230,8 @@ class NaiveBayesClassifier(object):
             if self.classify(object) == goldLabels[index]:
                 numCorrect += 1
         return float(numCorrect) / float(len(objects))
+
+
+def simple_featurizer(value: int | float) -> list[Feature]:
+    """Return a single binary feature for the given value."""
+    return [Feature("flag", distributions.Binary, value > 0)]
