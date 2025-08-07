@@ -12,9 +12,6 @@ dependencies = [
 dev = ["ruff", "pyright", "pytest", "pytest-cov", "coverage[toml]", "pre-commit"]
 
 [tool.pyright]
-pythonVersion = "3.11"
+pythonVersion = "3.12"
 typeCheckingMode = "basic"
 extraPaths = ["src"]
-
-[tool.pytest.ini_options]
-addopts = "--cov=src --cov-report=term-missing"

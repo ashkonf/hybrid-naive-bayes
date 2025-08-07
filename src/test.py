@@ -8,9 +8,9 @@ import distributions
 import logging
 
 
-def load_data() -> Tuple[
-    Tuple[List[List[str]], List[str]], Tuple[List[List[str]], List[str]]
-]:
+def load_data() -> (
+    Tuple[Tuple[List[List[str]], List[str]], Tuple[List[List[str]], List[str]]]
+):
     # Loading, formatting and partitioning the data set:
 
     # This data set is described here: https://archive.ics.uci.edu/ml/datasets/Statlog+(German+Credit+Data)
@@ -93,6 +93,7 @@ def main() -> None:
     classifier = nb.NaiveBayesClassifier(featurizer)
     classifier.train(training_set[0], training_set[1])
     logging.info("Accuracy = {}".format(classifier.accuracy(test_set[0], test_set[1])))
+
 
 if __name__ == "__main__":
     main()

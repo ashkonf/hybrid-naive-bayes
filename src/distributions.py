@@ -305,7 +305,9 @@ class KernelDensityEstimate(ContinuousDistribution):
         return numerator / denominator
 
     def cdf(self, value):
-        cdfValues = [self.__normalCdf(point, self.stdev, value) for point in self.observedPoints]
+        cdfValues = [
+            self.__normalCdf(point, self.stdev, value) for point in self.observedPoints
+        ]
         return sum(cdfValues) / self.numObservedPoints
 
     def __normalCdf(self, mean, stdev, value):
@@ -354,7 +356,7 @@ class DiscreteUniform(DiscreteDistribution):
     def mleEstimate(cls, points: Iterable[float]) -> "DiscreteUniform":
         return cls(min(points), max(points))
 
-      
+
 ## Poisson ############################################################################################
 
 
