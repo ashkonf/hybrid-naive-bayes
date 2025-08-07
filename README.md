@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Pytest](https://img.shields.io/badge/pytest-✓-brightgreen)](https://docs.pytest.org)
 [![Pyright](https://img.shields.io/badge/pyright-✓-green)](https://github.com/microsoft/pyright)
-[![pre-commit.ci status](https://results.pre-commit.ci/latest/github/ashkonfarhangi/hybrid-naive-bayes/main.svg)](https://results.pre-commit.ci/latest/github/ashkonfarhangi/hybrid-naive-bayes/main)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
 A generalized implementation of the Naive Bayes classifier that supports features of arbitrary type.
 
