@@ -1,5 +1,13 @@
 # Hybrid Naive Bayes
 
+[![PyPI version](https://img.shields.io/pypi/v/hybrid-naive-bayes.svg)](https://pypi.org/project/hybrid-naive-bayes/)
+[![CI](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml/badge.svg)](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes/branch/main/graph/badge.svg)](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![Pytest](https://img.shields.io/badge/tested%20with-pytest-blue)](https://docs.pytest.org/en/stable/)
+[![Pyright](https://img.shields.io/badge/checked%20with-pyright-blue)](https://github.com/microsoft/pyright)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ashkonfarhangi/hybrid-naive-bayes/main.svg)](https://results.pre-commit.ci/latest/github/ashkonfarhangi/hybrid-naive-bayes/main)
+
 A generalized implementation of the Naive Bayes classifier that supports features of arbitrary type.
 
 ## Features
