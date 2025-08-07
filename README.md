@@ -1,3 +1,5 @@
+<div align="center">
+
 # Hybrid Naive Bayes
 
 [![PyPI version](https://img.shields.io/pypi/v/your-package)](link-to-pypi-page)
@@ -10,6 +12,8 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ashkonf/hybrid-naive-bayes/ci.yml?branch=main)](https://github.com/ashkonf/hybrid-naive-bayes/actions/workflows/ci.yml?query=branch%3Amain)
 
 A generalized implementation of the Naive Bayes classifier that supports features of arbitrary type.
+
+</div>
 
 ## Features
 
