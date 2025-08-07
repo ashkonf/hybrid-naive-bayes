@@ -83,11 +83,11 @@ class NaiveBayesClassifier(object):
                         distribution = distributions.Binary(trueCount, falseCount)
                     else:
                         distribution = distributionTypes[featureName].mleEstimate(values)
-                except distributions.EstimationError, distributions.ParametrizationError:
+                except (distributions.EstimationError, distributions.ParametrizationError):
                     if issubclass(distributionTypes[featureName], distributions.Binary):
                         distribution = distributions.Binary(0, labelCounts[label])
                     elif issubclass(distributionTypes[featureName], distributions.DiscreteDistribution):
-                        distribution = distributions.DiscreteUniform(-sys.maxint, sys.maxint)
+                        distribution = distributions.DiscreteUniform(-sys.maxsize, sys.maxsize)
                     else:
                         distribution = distributions.Uniform(-sys.float_info.max, sys.float_info.max)
                 self.distributions[label][featureName] = distribution
@@ -135,7 +135,7 @@ class NaiveBayesClassifier(object):
         if numerator == float("-inf"): return 0.0
         
         denominator = 0.0
-        minWeight = min(labelWeights.iteritems(), key=operator.itemgetter(1))[1]
+        minWeight = min(labelWeights.items(), key=operator.itemgetter(1))[1]
         for label in labelWeights:
             weight = labelWeights[label]
             if minWeight < 0.0: weight /= (-minWeight)
@@ -153,7 +153,7 @@ class NaiveBayesClassifier(object):
     def classify(self, object, costMatrix=None):
         if costMatrix is None:
             labelWeights = self.__labelWeights(object)
-            return max(labelWeights.iteritems(), key=operator.itemgetter(1))[0]
+            return max(labelWeights.items(), key=operator.itemgetter(1))[0]
         
         else:
             labelCosts = collections.Counter()
@@ -165,7 +165,7 @@ class NaiveBayesClassifier(object):
                     if actualLabel not in costMatrix: raise Exception("Naive Bayes Prediction Error: Cost matrix does not include all labels.")
                     cost += labelProbabilities[predictedLabel] * costMatrix[predictedLabel][actualLabel]
                 labelCosts[predictedLabel] = cost
-            return min(labelCosts.iteritems(), key=operator.itemgetter(1))[0]
+            return min(labelCosts.items(), key=operator.itemgetter(1))[0]
 
     def accuracy(self, objects, goldLabels):
         if len(objects) == 0 or len(objects) != len(goldLabels):

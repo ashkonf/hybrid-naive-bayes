@@ -13,7 +13,7 @@ def load_data():
     data_points = [values[:-1] for values in value_matrix]
     labels = [values[-1] for values in value_matrix]
 
-    data_set_slice = len(data_points) / 2
+    data_set_slice = len(data_points) // 2
     training_set = (data_points[:data_set_slice], labels[:data_set_slice])
     test_set = (data_points[data_set_slice:], labels[data_set_slice:])
 
@@ -89,7 +89,7 @@ def main():
     training_set, test_set = load_data()
     classifier = nb.NaiveBayesClassifier(featurizer)
     classifier.train(training_set[0], training_set[1])
-    print "Accuracy = %s" % classifier.accuracy(test_set[0], test_set[1])
+    print("Accuracy = {}".format(classifier.accuracy(test_set[0], test_set[1])))
 
 if __name__ == "__main__":
     main()
