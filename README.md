@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hybrid Naive Bayes
+# hybrid-naive-bayes
 
 [![PyPI version](https://img.shields.io/pypi/v/your-package)](link-to-pypi-page)
 [![codecov](https://codecov.io/github/ashkonf/hybrid-naive-bayes/graph/badge.svg?token=7Y596J8IYZ)](https://codecov.io/github/ashkonf/hybrid-naive-bayes)
