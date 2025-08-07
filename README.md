@@ -1,8 +1,7 @@
 # Hybrid Naive Bayes
 
 [![PyPI version](https://badge.fury.io/py/hybrid-naive-bayes.svg)](https://badge.fury.io/py/hybrid-naive-bayes)
-[![CI](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes)
+[![codecov](https://codecov.io/github/ashkonf/hybrid-naive-bayes/graph/badge.svg?token=7Y596J8IYZ)](https://codecov.io/github/ashkonf/hybrid-naive-bayes)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Pytest](https://img.shields.io/badge/pytest-✓-brightgreen)](https://docs.pytest.org)
 [![Pyright](https://img.shields.io/badge/pyright-✓-green)](https://github.com/microsoft/pyright)
