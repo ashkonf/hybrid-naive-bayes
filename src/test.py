@@ -5,6 +5,7 @@ from typing import List, Tuple
 import requests
 import nb
 import distributions
+import logging
 
 
 def load_data() -> Tuple[
@@ -91,8 +92,7 @@ def main() -> None:
     training_set, test_set = load_data()
     classifier = nb.NaiveBayesClassifier(featurizer)
     classifier.train(training_set[0], training_set[1])
-    print(f"Accuracy = {classifier.accuracy(test_set[0], test_set[1])}")
-
+    logging.info("Accuracy = {}".format(classifier.accuracy(test_set[0], test_set[1])))
 
 if __name__ == "__main__":
     main()

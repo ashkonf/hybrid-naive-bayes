@@ -304,8 +304,12 @@ class KernelDensityEstimate(ContinuousDistribution):
         denominator = math.sqrt(2 * math.pi * math.pow(stdev, 2.0))
         return numerator / denominator
 
-    def cdf(self, value: float) -> float:  # pragma: no cover - not implemented
-        raise NotImplementedError("Not implemented")
+    def cdf(self, value):
+        cdfValues = [self.__normalCdf(point, self.stdev, value) for point in self.observedPoints]
+        return sum(cdfValues) / self.numObservedPoints
+
+    def __normalCdf(self, mean, stdev, value):
+        return 0.5 * (1.0 + math.erf((value - mean) / (stdev * math.sqrt(2.0))))
 
     def __str__(self) -> str:
         return "Continuous Gaussian Kernel Density Estimate distribution"
@@ -350,8 +354,8 @@ class DiscreteUniform(DiscreteDistribution):
     def mleEstimate(cls, points: Iterable[float]) -> "DiscreteUniform":
         return cls(min(points), max(points))
 
-
-## Poissoin ###########################################################################################
+      
+## Poisson ############################################################################################
 
 
 class Poisson(DiscreteDistribution):

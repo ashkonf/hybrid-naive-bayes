@@ -1,6 +1,6 @@
 # Hybrid Naive Bayes
 
-A generalized implementation of the Naive Bayes classifier in Python that provides the following functionality:
+A generalized implementation of the Naive Bayes classifier in Python 3 that provides the following functionality:
 
 1. Support for both categorical and ordered features.
 2. Support for both discrete and continuous ordered features.
@@ -15,7 +15,19 @@ A generalized implementation of the Naive Bayes classifier in Python that provid
 
 ## Installation
 
-This project uses [uv](https://github.com/astral-sh/uv) for dependency management. Install all dependencies, including the development tools used in this repository, with:
+This project uses [uv](https://github.com/astral-sh/uv) for package management. To create a virtual environment and install the project's dependencies run:
+
+```
+uv sync
+```
+
+This will provision a `.venv` directory with the packages listed in `pyproject.toml` (currently only `requests` for the sample script). You can then execute the example with:
+
+```
+uv run src/test.py
+```
+
+If you prefer not to use the virtual environment, the core modules `src/nb.py` and `src/distributions.py` have no external dependencies and can be copied directly into your project.
 
 ```bash
 uv sync --dev
@@ -31,7 +43,7 @@ See Derivation.pdf for a full mathematical justification of this implementation 
 
 ## Sample Usage
 
-**TL;DR**: Run `src/test.py`.
+**TL;DR**: Run `python3 src/test.py`.
 
 **More Details**: For an sample usage of this Naive Bayes classifier implementation, see `src/test.py`. It demonstrates how to use the classifier by downloading a credit-related data set hosted by UCI, training the classifier on half the data in the data set, and evaluating the classifier's performance on the other half. One can access the data [here](https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/german/german.data), and read more about its composition [here](https://archive.ics.uci.edu/ml/datasets/Statlog+(German+Credit+Data)).
 

@@ -9,6 +9,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Type
 
 import distributions
 
+
 ## Feature ##############################################################################
 
 
@@ -99,22 +100,12 @@ class NaiveBayesClassifier(object):
                             trueCount, falseCount
                         )
                     else:
-                        distribution = distributionTypes[featureName].mleEstimate(
-                            values
-                        )
-                except (
-                    distributions.EstimationError,
-                    distributions.ParametrizationError,
-                ):
+                        distribution = distributionTypes[featureName].mleEstimate(values)
+                except (distributions.EstimationError, distributions.ParametrizationError):
                     if issubclass(distributionTypes[featureName], distributions.Binary):
                         distribution = distributions.Binary(0, labelCounts[label])
-                    elif issubclass(
-                        distributionTypes[featureName],
-                        distributions.DiscreteDistribution,
-                    ):
-                        distribution = distributions.DiscreteUniform(
-                            -sys.maxsize, sys.maxsize
-                        )
+                    elif issubclass(distributionTypes[featureName], distributions.DiscreteDistribution):
+                        distribution = distributions.DiscreteUniform(-sys.maxsize, sys.maxsize)
                     else:
                         distribution = distributions.Uniform(
                             -sys.float_info.max, sys.float_info.max
@@ -175,10 +166,10 @@ class NaiveBayesClassifier(object):
 
         denominator = 0.0
         minWeight = min(labelWeights.items(), key=operator.itemgetter(1))[1]
-        for lbl in labelWeights:
-            weight = labelWeights[lbl]
-            if minWeight < 0.0:
-                weight /= -minWeight
+        for label in labelWeights:
+            weight = labelWeights[label]
+            if minWeight < 0.0: 
+                weight /= (-minWeight)
             denominator += math.exp(weight)
         denominator = math.log(denominator)
 

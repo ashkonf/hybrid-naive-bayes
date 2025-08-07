@@ -1,9 +1,12 @@
 [project]
 name = "hybrid-naive-bayes"
 version = "0.1.0"
-description = "Hybrid Naive Bayes implementation"
-requires-python = ">=3.11"
-dependencies = ["requests"]
+description = "A Hybrid Naive Bayes implementation in Python."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.4",
+]
 
 [project.optional-dependencies]
 dev = ["ruff", "pyright", "pytest", "pytest-cov", "coverage[toml]", "pre-commit"]
