@@ -33,3 +33,109 @@ A generalized implementation of the Naive Bayes classifier that supports feature
 ## Installation
 
 This project uses [uv](https://github.com/astral-sh/uv) for package management. To create a virtual environment and install dependencies, run:
+
+
+```bash
+uv sync
+```
+
+This will create a `.venv` directory and install the packages listed in `pyproject.toml`.
+
+If you prefer not to use the virtual environment, the core modules `src/nb.py` and `src/distributions.py` have no external dependencies and can be copied directly into your project.
+
+## Usage
+
+Here’s a simple example of how to train and use the Naive Bayes classifier.
+
+First, define a `featurizer` function to convert your raw data into a list of `Feature` objects. Each feature specifies its name, distribution, and value.
+
+```python
+import nb
+import distributions
+
+def featurizer(data_point: list[str]) -> list[nb.Feature]:
+    return [
+        nb.Feature("Checking account status", distributions.Multinomial, data_point[0]),
+        nb.Feature("Duration in months", distributions.Exponential, float(data_point[1])),
+        nb.Feature("Credit history", distributions.Multinomial, data_point[2]),
+        nb.Feature("Credit amount", distributions.Gaussian, float(data_point[4])),
+    ]
+```
+
+Next, create an instance of the classifier, passing your `featurizer` to the constructor. Then, call the `train` method with your training data and labels.
+
+```python
+# Sample data
+training_data = [
+    ['A11', '6', 'A34', '1169'],
+    ['A12', '48', 'A32', '5951'],
+    ['A14', '12', 'A34', '2096'],
+]
+labels = ['good', 'bad', 'good']
+
+# Initialize and train the classifier
+classifier = nb.NaiveBayesClassifier(featurizer)
+classifier.train(training_data, labels)
+```
+
+Finally, you can classify new data points using the `classify` method or get the probability distribution over all labels with the `probabilities` method.
+
+```python
+# Classify a new data point
+new_data_point = ['A11', '24', 'A32', '3000']
+prediction = classifier.classify(new_data_point)
+print(f"Prediction: {prediction}")
+
+# Get probabilities for the new data point
+probabilities = classifier.probabilities(new_data_point)
+print(f"Probabilities: {probabilities}")
+```
+
+For a more detailed and runnable example, see `src/test.py`. It demonstrates training the classifier on a real-world credit dataset from UCI.
+
+## Development
+
+To set up a development environment, install the project with its "dev" dependencies:
+
+```bash
+uv sync --dev
+```
+
+This will install development tools like `pre-commit`, `ruff`, and `pyright`.
+
+### Pre-Commit Hooks
+
+This project uses [pre-commit](https://pre-commit.com/) to enforce code quality and run tests before each commit. To install the hooks, run:
+
+```bash
+uv run pre-commit install
+```
+
+To run all checks on your staged files:
+
+```bash
+uv run pre-commit run
+```
+
+Or to run them on all files:
+```bash
+uv run pre-commit run --all-files
+```
+
+## Testing
+
+Run the test suite with:
+
+```bash
+uv run pytest
+```
+
+## Code Quality
+
+Static checks and formatting are handled with [ruff](https://github.com/astral-sh/ruff) and [pyright](https://github.com/microsoft/pyright). They can be executed via:
+
+```bash
+uv run ruff format
+uv run ruff check
+uv run pyright
+```
