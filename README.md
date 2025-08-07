@@ -1,12 +1,12 @@
 # Hybrid Naive Bayes
 
-[![PyPI version](https://badge.fury.io/py/python-t-test.svg)](https://badge.fury.io/py/python-t-test)
-[![CI](https://github.com/ashkonfarhangi/python-t-test/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ashkonfarhangi/python-t-test/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/ashkonfarhangi/python-t-test/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/ashkonfarhangi/python-t-test)
+[![PyPI version](https://badge.fury.io/py/hybrid-naive-bayes.svg)](https://badge.fury.io/py/hybrid-naive-bayes)
+[![CI](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ashkonfarhangi/hybrid-naive-bayes/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/ashkonfarhangi/hybrid-naive-bayes)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Pytest](https://img.shields.io/badge/pytest-✓-brightgreen)](https://docs.pytest.org)
 [![Pyright](https://img.shields.io/badge/pyright-✓-green)](https://github.com/microsoft/pyright)
-[![pre-commit.ci status](https://results.pre-commit.ci/latest/github/ashkonfarhangi/python-t-test/main.svg)](https://results.pre-commit.ci/latest/github/ashkonfarhangi/python-t-test/main)
+[![pre-commit.ci status](https://results.pre-commit.ci/latest/github/ashkonfarhangi/hybrid-naive-bayes/main.svg)](https://results.pre-commit.ci/latest/github/ashkonfarhangi/hybrid-naive-bayes/main)
 
 A generalized implementation of the Naive Bayes classifier that supports features of arbitrary type.
 
