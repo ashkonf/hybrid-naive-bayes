@@ -203,7 +203,7 @@ class Exponential(ContinuousDistribution):
         return 1.0 - math.exp(-self.lambdaa * value)
 
     def __str__(self):
-        return "Continuous Exponential distribution: lamda = %s" % self.lambdaa
+        return "Continuous Exponential distribution: lambda = %s" % self.lambdaa
 
     @classmethod
     def mleEstimate(cls, points):
@@ -221,7 +221,7 @@ class Exponential(ContinuousDistribution):
 class KernelDensityEstimate(ContinuousDistribution):
     '''
         See this paper for more information about using Gaussian
-        Kernal Density Estimation with the Naive Bayes Classifier:
+        Kernel Density Estimation with the Naive Bayes Classifier:
         http://www.cs.iastate.edu/~honavar/bayes-continuous.pdf
     '''
 
@@ -240,7 +240,11 @@ class KernelDensityEstimate(ContinuousDistribution):
         return numerator / denominator
 
     def cdf(self, value):
-        raise NotImplementedError("Not implemented")
+        cdfValues = [self.__normalCdf(point, self.stdev, value) for point in self.observedPoints]
+        return sum(cdfValues) / self.numObservedPoints
+
+    def __normalCdf(self, mean, stdev, value):
+        return 0.5 * (1.0 + math.erf((value - mean) / (stdev * math.sqrt(2.0))))
 
     def __str__(self):
         return "Continuous Gaussian Kernel Density Estimate distribution"
@@ -277,7 +281,7 @@ class DiscreteUniform(DiscreteDistribution):
     def mleEstimate(cls, points):
         return cls(min(points), max(points))
 
-## Poissoin ###########################################################################################
+## Poisson ############################################################################################
 
 class Poisson(DiscreteDistribution):
 
@@ -295,7 +299,7 @@ class Poisson(DiscreteDistribution):
             return 0.0
 
     def __str__(self):
-        return "Discrete Poisson distribution: lamda = %s" % self.lambdaa
+        return "Discrete Poisson distribution: lambda = %s" % self.lambdaa
 
     @classmethod
     def mleEstimate(cls, points):
