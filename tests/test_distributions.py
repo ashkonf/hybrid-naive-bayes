@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 # Ensure src directory is on sys.path for imports
-sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
+sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
 
 import pytest
 import distributions
@@ -32,7 +32,7 @@ def test_gaussian_mle_estimate():
 def test_poisson_mle_estimate():
     dist = distributions.Poisson.mleEstimate([2, 3, 4])
     assert dist.lambdaa == pytest.approx(3.0)
-    expected = (3.0 ** 3) / math.factorial(3) * math.exp(-3.0)
+    expected = (3.0**3) / math.factorial(3) * math.exp(-3.0)
     assert dist.probability(3) == pytest.approx(expected)
 
 
