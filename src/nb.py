@@ -4,25 +4,20 @@ import sys
 import collections
 import math
 import operator
-import copy
+from dataclasses import dataclass
 from typing import Any, Callable, Dict, List, Optional, Sequence, Type
 
-import distributions
+from . import distributions
 
 
 ## Feature ##############################################################################
 
 
-class Feature(object):
-    def __init__(
-        self, name: str, distribution: Type[distributions.Distribution], value: Any
-    ) -> None:
-        self.name: str = name
-        self.distribution: Type[distributions.Distribution] = distribution
-        self.value: Any = value
-
-    def __repr__(self) -> str:
-        return self.name + " => " + str(self.value)
+@dataclass
+class Feature:
+    name: str
+    distribution: Type[distributions.Distribution]
+    value: Any
 
     def hashable(self) -> tuple[str, Any]:
         return (self.name, self.value)
@@ -100,7 +95,7 @@ class NaiveBayesClassifier(object):
                             trueCount, falseCount
                         )
                     else:
-                        distribution = distributionTypes[featureName].mleEstimate(
+                        distribution = distributionTypes[featureName].mle_estimate(
                             values
                         )
                 except (
@@ -135,7 +130,7 @@ class NaiveBayesClassifier(object):
             raise Exception("Classifier has not been trained")
         features = self.featurize(object)
 
-        labelWeights: Dict[Any, float] = copy.deepcopy(self.priors)
+        labelWeights: Dict[Any, float] = self.priors.copy()
 
         for feature in features:
             for label in self.priors:

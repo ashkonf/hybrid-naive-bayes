@@ -1,12 +1,6 @@
-import sys
-from pathlib import Path
-
-# Ensure src directory is on sys.path for imports
-sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
-
-import nb
-import distributions
 import pytest
+
+from src import distributions, nb
 
 
 def test_classify_and_accuracy():
