@@ -12,12 +12,16 @@ class Distribution(object):
         raise NotImplementedError("Subclasses should override.")
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "Distribution":
+    def mle_estimate(cls, points: Iterable[float]) -> "Distribution":
         raise NotImplementedError("Subclasses should override.")
 
     @classmethod
-    def momEstimate(cls, points: Iterable[float]) -> "Distribution":
+    def mom_estimate(cls, points: Iterable[float]) -> "Distribution":
         raise NotImplementedError("Subclasses should override.")
+
+    # Backwards compatibility with camelCase names
+    mleEstimate = mle_estimate
+    momEstimate = mom_estimate
 
 
 ## ContinuousDistribution ##############################################################################
@@ -63,8 +67,10 @@ class Uniform(ContinuousDistribution):
         )
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "Uniform":
+    def mle_estimate(cls, points: Iterable[float]) -> "Uniform":
         return cls(min(points), max(points))
+
+    mleEstimate = mle_estimate
 
 
 ## Gaussian ############################################################################################
@@ -99,7 +105,7 @@ class Gaussian(ContinuousDistribution):
         )
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "Gaussian":
+    def mle_estimate(cls, points: Iterable[float]) -> "Gaussian":
         points_list = list(points)
         numPoints = float(len(points_list))
         if numPoints <= 1:
@@ -114,6 +120,8 @@ class Gaussian(ContinuousDistribution):
         stdev = math.sqrt(variance)
 
         return cls(mean, stdev)
+
+    mleEstimate = mle_estimate
 
 
 ## TruncatedGaussian ##################################################################################
@@ -163,7 +171,7 @@ class TruncatedGaussian(ContinuousDistribution):
         )
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "TruncatedGaussian":
+    def mle_estimate(cls, points: Iterable[float]) -> "TruncatedGaussian":
         points_list = list(points)
         numPoints = float(len(points_list))
 
@@ -179,6 +187,8 @@ class TruncatedGaussian(ContinuousDistribution):
         stdev = math.sqrt(variance)
 
         return cls(mean, stdev, min(points_list), max(points_list))
+
+    mleEstimate = mle_estimate
 
     def __phi(self, value: float) -> float:
         return 0.5 * (
@@ -219,7 +229,7 @@ class LogNormal(ContinuousDistribution):
         )
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "LogNormal":
+    def mle_estimate(cls, points: Iterable[float]) -> "LogNormal":
         points_list = list(points)
         numPoints = float(len(points_list))
 
@@ -235,6 +245,8 @@ class LogNormal(ContinuousDistribution):
         stdev = math.sqrt(variance)
 
         return cls(mean, stdev)
+
+    mleEstimate = mle_estimate
 
 
 ## Exponential ########################################################################################
@@ -261,7 +273,7 @@ class Exponential(ContinuousDistribution):
         return "Continuous Exponential distribution: lamda = %s" % self.lambdaa
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "Exponential":
+    def mle_estimate(cls, points: Iterable[float]) -> "Exponential":
         points_list = list(points)
         if len(points_list) == 0:
             raise EstimationError("Must provide at least one point.")
@@ -276,6 +288,8 @@ class Exponential(ContinuousDistribution):
             raise ParametrizationError("Mean of points must be positive.")
 
         return cls(1.0 / mean)
+
+    mleEstimate = mle_estimate
 
 
 ## KernelDensityEstimate ##############################################################################
@@ -317,8 +331,10 @@ class KernelDensityEstimate(ContinuousDistribution):
         return "Continuous Gaussian Kernel Density Estimate distribution"
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "KernelDensityEstimate":
+    def mle_estimate(cls, points: Iterable[float]) -> "KernelDensityEstimate":
         return cls(points)
+
+    mleEstimate = mle_estimate
 
 
 ## DiscreteDistribution ###############################################################################
@@ -353,8 +369,10 @@ class DiscreteUniform(DiscreteDistribution):
         )
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[float]) -> "DiscreteUniform":
+    def mle_estimate(cls, points: Iterable[float]) -> "DiscreteUniform":
         return cls(min(points), max(points))
+
+    mleEstimate = mle_estimate
 
 
 ## Poisson ############################################################################################
@@ -378,10 +396,12 @@ class Poisson(DiscreteDistribution):
         return "Discrete Poisson distribution: lamda = %s" % self.lambdaa
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[int]) -> "Poisson":
+    def mle_estimate(cls, points: Iterable[int]) -> "Poisson":
         points_list = list(points)
         mean = float(sum(points_list)) / float(len(points_list))
         return cls(mean)
+
+    mleEstimate = mle_estimate
 
 
 ## Multinomial #######################################################################################
@@ -407,11 +427,13 @@ class Multinomial(DiscreteDistribution):
         return "Discrete Multinomial distribution: buckets = %s" % self.categoryCounts
 
     @classmethod
-    def mleEstimate(cls, points: Iterable[Any]) -> "Multinomial":
+    def mle_estimate(cls, points: Iterable[Any]) -> "Multinomial":
         categoryCounts: Dict[Any, int] = collections.Counter()
         for point in points:
             categoryCounts[point] += 1
         return cls(categoryCounts)
+
+    mleEstimate = mle_estimate
 
 
 ## Binary ############################################################################################
@@ -431,7 +453,7 @@ class Binary(Multinomial):
         )
 
     @classmethod
-    def mleEstimate(
+    def mle_estimate(
         cls, points: Iterable[bool], smoothingFactor: float = 1.0
     ) -> "Binary":
         points_list = list(points)
@@ -441,6 +463,8 @@ class Binary(Multinomial):
                 trueCount += 1
         falseCount = len(points_list) - trueCount
         return cls(trueCount, falseCount, smoothingFactor)
+
+    mleEstimate = mle_estimate
 
 
 ## Errors ############################################################################################

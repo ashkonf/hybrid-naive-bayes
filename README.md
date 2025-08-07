@@ -50,8 +50,7 @@ Here’s a simple example of how to train and use the Naive Bayes classifier.
 First, define a `featurizer` function to convert your raw data into a list of `Feature` objects. Each feature specifies its name, distribution, and value.
 
 ```python
-import nb
-import distributions
+from src import nb, distributions
 
 def featurizer(data_point: list[str]) -> list[nb.Feature]:
     return [

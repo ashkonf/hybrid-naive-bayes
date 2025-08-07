@@ -18,3 +18,6 @@ dev = ["ruff", "pyright", "pytest", "pytest-cov", "coverage[toml]", "pre-commit"
 pythonVersion = "3.12"
 typeCheckingMode = "basic"
 extraPaths = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

@@ -1,36 +1,32 @@
-import sys
-from pathlib import Path
-
-# Ensure src directory is on sys.path for imports
-sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
+import math
 
 import pytest
-import distributions
-import math
+
+from src import distributions
 
 
 def test_exponential_mle_estimate_errors():
     # No data points should raise an estimation error
     with pytest.raises(distributions.EstimationError):
-        distributions.Exponential.mleEstimate([])
+        distributions.Exponential.mle_estimate([])
 
     # Negative data points are not allowed for exponential distribution
     with pytest.raises(distributions.EstimationError):
-        distributions.Exponential.mleEstimate([-1.0, 2.0])
+        distributions.Exponential.mle_estimate([-1.0, 2.0])
 
     # Mean of zero leads to a parametrization error
     with pytest.raises(distributions.ParametrizationError):
-        distributions.Exponential.mleEstimate([0.0, 0.0])
+        distributions.Exponential.mle_estimate([0.0, 0.0])
 
 
 def test_gaussian_mle_estimate():
-    dist = distributions.Gaussian.mleEstimate([1.0, 2.0, 3.0, 4.0])
+    dist = distributions.Gaussian.mle_estimate([1.0, 2.0, 3.0, 4.0])
     assert dist.mean == pytest.approx(2.5)
     assert dist.stdev == pytest.approx(math.sqrt(5.0 / 3.0))
 
 
 def test_poisson_mle_estimate():
-    dist = distributions.Poisson.mleEstimate([2, 3, 4])
+    dist = distributions.Poisson.mle_estimate([2, 3, 4])
     assert dist.lambdaa == pytest.approx(3.0)
     expected = (3.0**3) / math.factorial(3) * math.exp(-3.0)
     assert dist.probability(3) == pytest.approx(expected)
@@ -46,7 +42,7 @@ def test_continuous_distributions() -> None:
     assert gaussian.pdf(0.0) > 0
     assert math.isclose(gaussian.cdf(0.0), 0.5)
 
-    tg = distributions.TruncatedGaussian.mleEstimate([0.0, 1.0, 0.5])
+    tg = distributions.TruncatedGaussian.mle_estimate([0.0, 1.0, 0.5])
     assert tg.pdf(0.5) > 0
 
     ln = distributions.LogNormal(0.0, 1.0)
@@ -72,5 +68,5 @@ def test_discrete_distributions() -> None:
     m = distributions.Multinomial({"a": 2, "b": 1})
     assert m.probability("a") > m.probability("c")
 
-    bin_est = distributions.Binary.mleEstimate([True, False, True])
+    bin_est = distributions.Binary.mle_estimate([True, False, True])
     assert isinstance(bin_est, distributions.Binary)
