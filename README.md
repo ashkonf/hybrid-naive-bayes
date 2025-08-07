@@ -6,7 +6,6 @@
 [![Pytest](https://img.shields.io/badge/pytest-✓-brightgreen)](https://docs.pytest.org)
 [![Pyright](https://img.shields.io/badge/pyright-✓-green)](https://github.com/microsoft/pyright)
 [![Ruff](https://img.shields.io/badge/ruff-✓-blue?logo=ruff)](https://github.com/astral-sh/ruff)
-[![uv](https://img.shields.io/badge/uv-✓-purple?logo=uv)](https://github.com/astral-sh/uv)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ashkonf/hybrid-naive-bayes/ci.yml?branch=main)](https://github.com/ashkonf/hybrid-naive-bayes/actions/workflows/ci.yml?query=branch%3Amain)
 
